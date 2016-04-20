@@ -45,9 +45,11 @@ module Agents
               "_contents": "tag contents (can be an object for nesting)"
             }
 
-        # Ordering events in the output
+        # Ordering events
 
-        #{description_events_order('events in the output')}
+        #{description_events_order('events')}
+
+        DataOutputAgent outputs the last `events_to_show` events after sorting, so setting this option to something like `["{{created_at}}", "time", true]` is generally considered wrong because the output would have oldest events.  If you want a feed of latest events sorted in reverse chronological order, set this option to `["{{created_at}}", "time"]` instead and use the feed URL with `?reversed=1` suffixed.
 
         # Liquid Templating
 
