@@ -253,6 +253,9 @@ describe Agents::DataOutputAgent do
           asc_content, _status, _content_type = agent.receive_web_request({ 'secret' => 'secret2' }, 'get', 'application/json')
           expect(asc_content['items'].map {|i| i["title"] }).to eq(["Evolving again", "Evolving yet again with a past date"])
 
+          reversed_asc_content, _status, _content_type = agent.receive_web_request({ 'secret' => 'secret2', 'reversed' => 'true' }, 'get', 'application/json')
+          expect(reversed_asc_content['items'].map {|i| i["title"] }).to eq(["Evolving yet again with a past date", "Evolving again"])
+
           agent.options['events_to_show'] = 40
           asc_content, _status, _content_type = agent.receive_web_request({ 'secret' => 'secret2' }, 'get', 'application/json')
           expect(asc_content['items'].map {|i| i["title"] }).to eq(["Evolving", "Evolving again", "Evolving yet again with a past date"])

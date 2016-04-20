@@ -14,6 +14,8 @@ module Agents
 
         where `:secret` is one of the allowed secrets specified in your options and the extension can be `xml` or `json`.
 
+        If an optional request parameter `reversed` is given and its value is not blank (e.g. `?reversed=1`), items in the output appear in reverse order.
+
         You can setup multiple secrets so that you can individually authorize external systems to
         access your Huginn data.
 
@@ -228,6 +230,10 @@ module Agents
         end
 
         now = Time.now
+
+        if params['reversed'].presence
+          items.reverse!
+        end
 
         if format =~ /json/
           content = {
