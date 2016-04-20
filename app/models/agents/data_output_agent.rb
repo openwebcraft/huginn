@@ -187,7 +187,7 @@ module Agents
         memory[:last_event_id] = events.first.try!(:id)
       end
 
-      events = sort_events(events).take(events_to_show)
+      events = sort_events(events).last(events_to_show)
 
       if reload
         memory[:event_ids] = events.map(&:id)
