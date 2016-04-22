@@ -1,5 +1,7 @@
-FROM ubuntu:14.04
-MAINTAINER Dominik Sander
+FROM resin/raspberrypi2-debian:latest
+# Enable systemd
+ENV INITSYSTEM on
+MAINTAINER Matthias Geisler <matthias@openwebcraft.com>
 
 ADD docker/scripts/prepare /scripts/prepare
 RUN /scripts/prepare
